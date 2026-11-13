@@ -9,10 +9,13 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a>
+  <a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
   <a href="https://github.com/ishandutta2007/Awesome-Real-Time-Event-Webhooks/stargazers"><img src="https://img.shields.io/github/stars/ishandutta2007/Awesome-Real-Time-Event-Webhooks?style=social&color=white" alt="GitHub stars"></a>
   <a href="https://github.com/ishandutta2007/Awesome-Real-Time-Event-Webhooks/network/members"><img src="https://img.shields.io/github/forks/ishandutta2007/Awesome-Real-Time-Event-Webhooks?style=social&color=white" alt="GitHub forks"></a>
-  <a href="https://github.com/sindresorhus/awesome"><img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome"></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC0_1.0-blue.svg" alt="License: CC0 1.0"></a>
+  <a href="https://github.com/ishandutta2007"><img alt="GitHub followers" src="https://img.shields.io/github/followers/ishandutta2007?label=Follow" /></a>
 </p>
 
 > 🌟 **Welcome to the definitive guide to Real-Time Event Webhooks and Event-Driven Ingestion Infrastructure!** Whether you are looking for enterprise-grade Webhook-as-a-Service (WaaS), automated delivery proxies, testing inspectors, or self-hosted open-source webhook servers, this repository covers the best-of-breed solutions.
@@ -28,6 +31,8 @@
 - [💻 Open-Source Software](#-open-source-software)
 - [📊 Feature Comparison Matrix](#-feature-comparison-matrix)
 - [🔍 Key Evaluation Criteria for Webhook Gateways](#-key-evaluation-criteria-for-webhook-gateways)
+- [📈 Star History](#-star-history)
+- [💖 Support & Sponsorship](#-support--sponsorship)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
 
@@ -119,6 +124,28 @@ When selecting or architecting a webhook infrastructure for production workloads
    If building a B2B SaaS platform, offload customer support tickets by embedding a self-serve webhook portal where your enterprise clients can configure endpoints, rotate signing secrets, inspect delivery logs, and trigger event redeliveries independently.
 5. **🧩 Transformation & Event Routing**:
    Filter events at the network boundary using dot-notation schemas (`order.created`, `invoice.payment_failed`) to prevent downstream systems from receiving irrelevant payloads.
+
+---
+
+## 📈 Star History
+
+[![Star History Chart](https://www.star-history.com/svg?repos=ishandutta2007/Awesome-Real-Time-Event-Webhooks&type=date&legend=top-left)](https://www.star-history.com/#ishandutta2007/Awesome-Real-Time-Event-Webhooks&type=date&legend=top-left)
+
+---
+
+## 💖 Support & Sponsorship
+
+Thank you so much for visiting and using **Awesome Real-Time Event Webhooks**! 🚀
+
+Building and maintaining this curated directory takes time and ongoing research across the fast-moving event-driven ecosystem. If this repository helped you in your work, architectural decisions, or projects, please consider supporting in any of the following ways:
+
+- ⭐ **Star this repository** to help others discover it.
+- 🍴 **Fork and share** it with your developer community, colleagues, and friends.
+- ☕ **Buy me a coffee / Sponsor**: Support ongoing maintenance directly on the [GitHub Sponsors Dashboard](https://github.com/sponsors/ishandutta2007).
+
+[![Sponsor ishandutta2007](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://github.com/sponsors/ishandutta2007)
+
+Every bit of encouragement and support is deeply appreciated! ❤️
 
 ---
 
