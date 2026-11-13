@@ -1,150 +1,146 @@
-# Awesome-Real-Time-Event-Webhooks
+# ⚡ Awesome Real-Time Event Webhooks 🚀
 
-# Awesome Real-Time Event Webhooks
+<p align="center">
+  <img src="assets/banner.svg" alt="Awesome Real-Time Event Webhooks Banner" width="100%">
+</p>
 
-> A curated list of top Real-Time Event Webhook platforms — both SaaS/Hosted commercial solutions and open-source alternatives for ingesting, routing, retrying, and delivering event-driven webhooks reliably at scale.
-> 🌟 Star this repo if you find it useful! 🌟
+<p align="center">
+  <strong>A curated index of top real-time event webhook platforms, event-driven gateways, delivery architectures, and open-source tools for enterprise ingestion, routing, transformations, and retries at scale.</strong>
+</p>
 
----
+<p align="center">
+  <a href="https://github.com/ishandutta2007/Awesome-Real-Time-Event-Webhooks/stargazers"><img src="https://img.shields.io/github/stars/ishandutta2007/Awesome-Real-Time-Event-Webhooks?style=social&color=white" alt="GitHub stars"></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Real-Time-Event-Webhooks/network/members"><img src="https://img.shields.io/github/forks/ishandutta2007/Awesome-Real-Time-Event-Webhooks?style=social&color=white" alt="GitHub forks"></a>
+  <a href="https://github.com/sindresorhus/awesome"><img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC0_1.0-blue.svg" alt="License: CC0 1.0"></a>
+</p>
 
-## 📋 Table of Contents
-
-- [SaaS / Hosted Platforms](#-saas--hosted-platforms)
-  - [Chargebee Event Webhooks](#chargebee-event-webhooks)
-  - [Svix](#svix)
-  - [Hookdeck](#hookdeck)
-  - [Webhook.site](#webhooksite)
-  - [RequestBin](#requestbin)
-  - [Zapier Webhooks](#zapier-webhooks)
-  - [Make Webhooks](#make-webhooks)
-  - [Courier Webhooks](#courier-webhooks)
-  - [Pipedream](#pipedream)
-- [Open-Source Software](#-open-source-software)
-  - [Convoy](#convoy)
-  - [Hook0](#hook0)
-  - [Outpost (Hookdeck)](#outpost-hookdeck)
-  - [WebhookX](#webhookx)
-  - [Webhook Tester (tarampampam)](#webhook-tester-tarampampam)
-- [Comparison at a Glance](#-comparison-at-a-glance)
-- [Contributing](#-contributing)
+> 🌟 **Welcome to the definitive guide to Real-Time Event Webhooks and Event-Driven Ingestion Infrastructure!** Whether you are looking for enterprise-grade Webhook-as-a-Service (WaaS), automated delivery proxies, testing inspectors, or self-hosted open-source webhook servers, this repository covers the best-of-breed solutions.
+> 
+> ⭐ **Star this repository** if you find it helpful for designing resilient, scalable event pipelines!
 
 ---
 
-## 🟦 SaaS / Hosted Platforms
+## 📑 Table of Contents
 
-Commercial, cloud-hosted Real-Time Event Webhook platforms. These are not open-source but are included as reference points for feature comparison.
-
-### Chargebee Event Webhooks
-**Type:** Billing event webhooks with no signature verification
-Chargebee webhooks notify your application about subscription and billing activity — subscription creation, cancellation, payment success/failure, and invoice generation . **Critical security note:** Chargebee does **not** support HMAC signing. There is no signature header, no timestamp, and no replay window. Authenticity rests on optional HTTP Basic Auth (off by default), a secret-in-URL pattern, and region-specific IP allowlisting . Payload shape varies by `api_version` (v1/v2), so defensive parsing is essential. Retries follow 7 attempts over roughly two days; the endpoint must return 2xx. Dedupe on the event `id` .  
-**Best for:** Existing Chargebee customers needing to react to billing events, with awareness that signature verification is unavailable and Basic Auth must be manually enabled.
-
-### Svix
-**Type:** Webhooks-as-a-service with open-core server and consumer portal
-Svix is the leading commercial webhooks platform, offering endpoint management, event type catalogs with dot-notation hierarchy, HMAC signing, automatic retries, dead letter queues, delivery logs, and manual replay . The core server is MIT-licensed, making it a rare example of a commercial platform with a genuinely open-source core, though the self-hosted version lacks some features of the hosted service, and supported on-prem deployment is an Enterprise-plan feature . The free tier includes 50,000 messages/month; paid tiers add longer retention and higher API rates .  
-**Best for:** SaaS companies wanting a mature webhooks platform with a consumer portal, strong signing, and a larger ecosystem, accepting open-core trade-offs if self-hosting.
-
-### Hookdeck
-**Type:** Event gateway with queue, retries, and observability
-Hookdeck provides an inbound event gateway (webhook proxy, queueing, retries, replay) and a separate outbound product, Outpost . It guarantees ingestion even during downtime or traffic spikes, with a Developer tier free up to 10,000 events and 3-day retention, scaling to Team ($39/month) and Growth ($499/month with SSO, SCIM, HIPAA) . A 2026 pricing update increased free limits to 100k requests and made seats unlimited on all paid plans . The Outbound product (Outpost) is Apache-2.0 and self-hostable; the inbound Event Gateway is closed-source .  
-**Best for:** Teams wanting a managed gateway for inbound webhook reliability, with an open-source option for outbound delivery.
-
-### Webhook.site
-**Type:** Instant inspection with programmable custom actions
-Webhook.site gives you a unique URL immediately for inspecting incoming webhooks, HTTP requests, form submissions, and emails in real time . The free tier gives 7-day URL expiry and 100 requests, with data publicly viewable by anyone with the URL . Paid accounts unlock **Custom Actions** (visual and code-based workflows that run on every request), Queues for async processing and throttling, Schedules (cron for webhooks), and a managed PostgreSQL-compatible database . It has evolved from a simple inspector into a programmable automation endpoint.  
-**Best for:** Developers wanting instant webhook debugging plus a path to automating workflows (transform, forward, notify, store) without writing backend code.
-
-### RequestBin
-**Type:** Webhook debugging workspace with forwarding and mock APIs
-RequestBin provides a webhook debugging workspace with named bins, request history, replay, and mock APIs . The Free tier includes 3 bins, 500 requests/bin/day, 100 stored per bin, and 5 API keys . Pro ($12/month) unlocks 20 bins, unlimited request history, edit & replay with a full HTTP Requester, 5 forwarding rules, and 20 Mock APIs with 5 rules each . It includes an MCP server for AI IDEs and bulk export.  
-**Best for:** Developers and small teams wanting an affordable, organized webhook debugging workspace with request history and forwarding to a live app.
-
-### Zapier Webhooks
-**Type:** Webhook triggers and actions within multi-app automation
-Zapier's Webhooks by Zapier app triggers Zaps from incoming webhooks (Catch Hook) or sends webhooks as actions (POST, GET, PUT, or Custom Request for PATCH/DELETE) . It handles automatic data parsing for standard methods, supports JSON/XML/Form/Raw payloads, Basic Auth, and custom headers . The Custom Request option provides raw JSON/XML flexibility for nested arrays, empty values, or specialized headers . It is a lightweight glue layer for connecting webhook-emitting services to 7,000+ apps without code.  
-**Best for:** Teams wanting no-code automation that consumes or emits webhooks as part of broader multi-app workflows.
-
-### Make Webhooks
-**Type:** Custom webhooks within visual automation scenarios
-Make's Webhooks app lets you create custom webhooks and mailhooks to trigger scenarios instantly from third-party services . Each scenario uses its own unique webhook URL, with optional API Key authentication via the `x-make-apikey` header . You can define a data structure to validate incoming payloads (JSON, form data, multipart with file uploads up to 5 MB) or let Make accept all data without validation . It also supports request headers and JSON pass-through for accessing original payloads .  
-**Best for:** Teams using Make for visual automation who need to receive webhooks as scenario triggers with structured data validation.
-
-### Courier Webhooks
-**Type:** Notification delivery via webhook provider
-Courier's Webhook integration delivers HTTP requests to a static or dynamic URL as part of its notification orchestration platform . You can set the method, headers, and basic or bearer authentication, and control whether the payload includes limited or expanded profile data . Dynamic destinations let you specify the webhook URL per-recipient via the profile, and provider overrides can replace the URL, method, headers, or body entirely . It is a notification channel rather than a general-purpose webhook gateway.  
-**Best for:** Teams already using Courier for multi-channel notifications wanting to add webhook delivery as one of their notification channels.
-
-### Pipedream
-**Type:** Developer-focused event source platform
-Pipedream provides HTTP webhook triggers and event sources with code-first Node.js/Python steps, built-in auth handling, and event history . It is suited for developers wanting programmatic control over webhook processing, with the ability to write custom logic between trigger and destination. **Note:** Pipedream Workflows is closing, according to a 2026 report .  
-**Best for:** Developers wanting code-first webhook processing with the ability to write custom transformation and routing logic.
+- [🌐 Sector Overview & Market Dynamics](#-sector-overview--market-dynamics)
+- [☁️ SaaS & Hosted Platforms](#️-saas--hosted-platforms)
+- [💻 Open-Source Software](#-open-source-software)
+- [📊 Feature Comparison Matrix](#-feature-comparison-matrix)
+- [🔍 Key Evaluation Criteria for Webhook Gateways](#-key-evaluation-criteria-for-webhook-gateways)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
 
 ---
 
-## 🟩 Open-Source Software
+## 🌐 Sector Overview & Market Dynamics
 
-Self-hosted, community-driven Real-Time Event Webhook tools. The open-source ecosystem spans **full webhook gateways**, **event delivery infrastructure**, and **focused inspection/forwarding tools**.
+The global **Event-Driven Architecture (EDA) & Real-Time Event Management market** is valued at approximately **$3.7B to $8.2B**, expanding rapidly at a Compound Annual Growth Rate (**CAGR**) of **18.4% to 21.5%** as enterprises transition away from polling toward asynchronous, event-driven microservices.
 
-### Convoy
-**Stack:** Go / PostgreSQL / Redis | **License:** Open Source (per project)  
-Convoy is an open-source, high-performance **webhooks gateway** designed to manage millions of webhooks end-to-end . It supports both **incoming** projects (receive webhooks from providers with a unique URL per source) and **outgoing** projects (publish events from your systems to customers via API) [from previous context]. Features include retries, filtering, transformations, portal links, and observability. It is the most mature open-source option for teams needing a unified gateway for both inbound and outbound webhook traffic.  
-**Best for:** Teams needing a self-hosted gateway for both receiving provider webhooks and sending outbound webhooks to customers, with retry and observability built in.
-
-### Hook0
-**Stack:** (Check repository) | **License:** SSPL-1.0  
-Hook0 is an open-source webhooks-as-a-service platform with **full feature parity between cloud and self-hosted** . Supports outbound webhook delivery with dot-notation event type hierarchy, HMAC signatures, automatic retries with escalating backoff, dead letter handling, delivery logs, manual replay, REST API, and **label-based multi-tenant filtering** for SaaS platforms routing different events to different tenants . SDKs cover JS, Rust, Python, Go, Ruby, PHP, C#, Java, Kotlin, Lua, and Zig. Default deployment uses PostgreSQL for both queueing and storage; high-throughput setups can switch to Apache Pulsar and S3-compatible storage . EU data plane available on every plan .  
-**Best for:** Teams wanting genuinely open-source (SSPL) webhooks infrastructure with no feature gates, strong multi-tenant routing, and EU data residency.
-
-### Outpost (Hookdeck)
-**Stack:** Go | **License:** Apache-2.0  
-Outpost is Hookdeck's open-source **outbound event delivery infrastructure** for sending webhooks and events to customer-preferred destinations . Supports **webhooks (HTTP), AWS SQS, RabbitMQ, GCP Pub/Sub, Amazon EventBridge, and Kafka** as destination types. Features topic-based subscriptions, publish via API or queue, at-least-once delivery, automatic and manual retries, multi-tenant support, a user portal for customers, delivery failure alerts, and OpenTelemetry integration . Managed by Hookdeck with usage-based pricing from $10 per million events .  
-**Best for:** SaaS platforms wanting to deliver events not just to webhooks but also directly to customer queues, brokers, and event gateways.
-
-### WebhookX
-**Stack:** Go | **License:** Apache-2.0 (production license required for commercial use)  
-WebhookX is an open-source webhook gateway for receiving, validating, transforming, and delivering events at scale . Features include Admin API, reliable delivery with automatic retries, fanout to multiple endpoints by event type, rate limiting, **declarative GitOps-oriented configuration**, plugins (WASM transforms, signature verification, event validation, function plugins), OpenTelemetry observability, and HMAC signing via built-in plugin . **Multi-tenancy and secret management require a license**; free production licenses are available for eligible non-commercial use . Requires PostgreSQL and Redis.  
-**Best for:** Teams wanting a Go-based, plugin-extensible webhook gateway with declarative configuration and GitOps workflows.
-
-### Webhook Tester (tarampampam)
-**Stack:** Go / React | **License:** Open Source (per repository)  
-Webhook Tester is a free, self-hosted alternative to webhook.site and RequestBin . Generates unique URLs for capturing and inspecting HTTP requests. Features customizable response codes/headers/body, WebSocket real-time UI updates, optional ngrok tunneling, three storage drivers (memory, Redis, filesystem), and a lightweight Docker image. Supports pre-defined static webhook URLs via UUID prefixes.  
-**Best for:** Developers and teams wanting a self-hosted, privacy-respecting webhook inspector for debugging and testing.
+The webhook and event delivery sector is currently **moderately to highly fragmented** rather than a winner-take-all monopoly:
+- **Broad Fragmentation Across Niches**: High-scale API platforms require purpose-built Webhooks-as-a-Service (WaaS) with consumer portals and signature verification (e.g., Svix, Convoy, Hook0).
+- **Automation & iPaaS Overlap**: Workflow automation giants (Zapier, Celonis/Make) dominate multi-app orchestration, while developer gateways (Hookdeck, Outpost) bridge HTTP payloads directly into message queues (Kafka, AWS SQS, RabbitMQ).
+- **Standardization Efforts**: Emerging standards like [Standard Webhooks](https://www.standardwebhooks.com/) are actively attempting to unify authentication, payload signing, and idempotency across disparate cloud ecosystems.
 
 ---
 
-## 📊 Comparison at a Glance
+## ☁️ SaaS & Hosted Platforms
 
-| Software | License | Stack | Inbound | Outbound | Retries/Queue | Self-Hosted | Best For |
-|----------|---------|-------|---------|----------|---------------|-------------|----------|
-| **Chargebee** | Proprietary | Cloud | ❌ | ✅ Billing events | ✅ 7 attempts | ❌ | Billing event reactions |
-| **Svix** | Proprietary (MIT core) | Cloud | ❌ | ✅ Multi-tenant | ✅ | (Enterprise) | Product webhooks + portal |
-| **Hookdeck** | Proprietary | Cloud | ✅ Gateway | ✅ (Outpost) | ✅ Queue | (Outpost) | Managed inbound reliability |
-| **Convoy** | Open Source | Go/Postgres | ✅ | ✅ | ✅ | ✅ | Unified inbound + outbound |
-| **Hook0** | SSPL-1.0 | (Check) | ❌ | ✅ Full parity | ✅ | ✅ | Multi-tenant + EU residency |
-| **Outpost** | Apache-2.0 | Go | ❌ | ✅ Multi-dest | ✅ | ✅ | Customer queues/brokers |
-| **WebhookX** | Apache-2.0 | Go | ✅ | ✅ | ✅ | ✅ | Plugin + GitOps gateway |
-| **Webhook.site** | Proprietary | Cloud | ✅ Inspector | ✅ Actions | ✅ Queues | ❌ | Debug + workflow automation |
-| **RequestBin** | Proprietary | Cloud | ✅ Inspector | ✅ Forwarding | (Pro) | ❌ | Affordable debug + forward |
+Commercial, cloud-hosted webhook infrastructure and real-time event platforms. Sorted by company size (valuation / ARR) in descending order:
+
+| 🏢 Platform | 💰 Company Scale (Valuation / ARR) | 🏷️ Starting Paid Tier | 🎁 Free Tier Limit & Trial Period | 🎯 Primary Architecture & Capabilities |
+|---|---|---|---|---|
+| **[Make Webhooks](https://www.make.com/)** | **~$13B Valuation** (Parent Celonis) / **~$771M ARR** | **$9.00 / month** (Core plan, billed annually) or $10.59/mo | **1,000 operations/month** free forever (max 2 active scenarios, 15-min interval) | Visual scenario orchestration, custom webhooks, payload schemas & multi-part validation |
+| **[Zapier Webhooks](https://zapier.com/)** | **~$5B Valuation** / **~$310M+ ARR** | **$19.99 / month** (Professional plan, billed annually) or $29.99/mo | **100 tasks/month** free forever (limited to 2-step single-trigger Zaps) | Event trigger (Catch Hook) and action publisher across 7,000+ cloud integrations |
+| **[Chargebee Event Webhooks](https://www.chargebee.com/)** | **~$3.5B Valuation** / **~$115M–$300M ARR** | **$599.00 / month** (Performance plan, annual commitment) | **$250,000 cumulative lifetime billing** free forever (Starter tier) | Specialized subscription billing event dispatch, 7-attempt exponential retries |
+| **[Pipedream](https://pipedream.com/)** | **~$80M Valuation** (Acquired by Workday) / **~$3.5M ARR** | **$19.00 / month** (Basic tier) or $99+/mo Team | **333 daily credits (~10,000 credits/month)** free forever (3 active workflows) | Code-first serverless webhook routing, Python/Node.js step transforms, event sources |
+| **[Svix](https://www.svix.com/)** | **~$25M–$50M Valuation** (Series A) / **~$1M–$5M ARR** | **$20.00 / month** (Basic plan with 99.9% uptime SLA) | **50,000 messages/month** free forever (50 msg/sec, 7-day log retention) | Enterprise Webhooks-as-a-Service, hosted consumer portal, HMAC signatures, dead-letter queues |
+| **[Courier Webhooks](https://www.courier.com/)** | **~$30M–$45M Valuation** (Series A) / Private VC | **$0 base / month + $0.005 per send** (Business tier overage) | **10,000 sends/month** free forever (Developer tier) | Notification orchestration delivering HTTP events to static & dynamic recipient endpoints |
+| **[Hookdeck](https://hookdeck.com/)** | **~$15M–$30M Valuation** (Seed) / **~$1M ARR** | **$39.00 / month** (Team plan with unlimited team seats) | **100,000 requests/month** free forever (3-day event retention, 5 destinations) | Full event gateway, inbound queueing, replay, traffic throttling, Outpost outbound driver |
+| **[RequestBin](https://requestbin.net/)** | **Subsidiary of Pipedream** / Developer Workspace | **$12.00 / month** (Pro plan with custom subdomains) | **3 bins, 500 requests/bin/day, 100 stored/bin** free forever | Webhook debugging workspace, HTTP mock APIs, live request forwarding rules & MCP AI integration |
+| **[Webhook.site](https://webhook.site/)** | **Bootstrapped / Profitable Micro-SaaS** | **$9.00 / month** (Basic plan) or $19.00/mo Pro | **100 requests per URL, 7-day URL expiry** free forever | Instant inspection URL, programmable custom action flows, async background queues & cron schedules |
+
+---
+
+## 💻 Open-Source Software
+
+Self-hosted, community-driven event webhook servers, proxies, and gateways. Repositories are equipped with live social star badges and sorted by GitHub stars in descending order:
+
+| 📦 Repository & Project | 🌟 GitHub Stars Badge | 🛠️ Tech Stack & License | 🚀 Architecture & Key Strengths |
+|---|---|---|---|
+| **[webhook](https://github.com/adnanh/webhook)** | [![Stars](https://img.shields.io/github/stars/adnanh/webhook?style=social&color=white)](https://github.com/adnanh/webhook/stargazers) | Go • MIT | Lightweight, battle-tested incoming webhook server to trigger shell scripts, commands, and automation hooks |
+| **[webhook.site](https://github.com/webhooksite/webhook.site)** | [![Stars](https://img.shields.io/github/stars/webhooksite/webhook.site?style=social&color=white)](https://github.com/webhooksite/webhook.site/stargazers) | PHP / Laravel / Vue.js • MIT | Open-source core of Webhook.site for capturing, inspecting, parsing, and testing incoming HTTP payloads |
+| **[svix-webhooks](https://github.com/svix/svix-webhooks)** | [![Stars](https://img.shields.io/github/stars/svix/svix-webhooks?style=social&color=white)](https://github.com/svix/svix-webhooks/stargazers) | Rust • MIT / Apache-2.0 | High-performance enterprise webhooks-as-a-service backend featuring endpoint catalogs, HMAC signing, and retries |
+| **[convoy](https://github.com/frain-dev/convoy)** | [![Stars](https://img.shields.io/github/stars/frain-dev/convoy?style=social&color=white)](https://github.com/frain-dev/convoy/stargazers) | Go / PostgreSQL / Redis • MPL-2.0 | Scalable full-cycle webhook gateway handling millions of incoming and outgoing events with customer-facing portals |
+| **[standard-webhooks](https://github.com/standard-webhooks/standard-webhooks)** | [![Stars](https://img.shields.io/github/stars/standard-webhooks/standard-webhooks?style=social&color=white)](https://github.com/standard-webhooks/standard-webhooks/stargazers) | Specification / Multi-Lang • Apache-2.0 | Formal open industry specification & SDKs for webhook signatures, timestamp verification, and symmetric security |
+| **[hook0](https://github.com/hook0/hook0)** | [![Stars](https://img.shields.io/github/stars/hook0/hook0?style=social&color=white)](https://github.com/hook0/hook0/stargazers) | Rust / PostgreSQL • SSPL-1.0 | Open-source webhooks-as-a-service with complete cloud-to-self-hosted parity and multi-tenant tag filtering |
+| **[laravel-webhook-client](https://github.com/spatie/laravel-webhook-client)** | [![Stars](https://img.shields.io/github/stars/spatie/laravel-webhook-client?style=social&color=white)](https://github.com/spatie/laravel-webhook-client/stargazers) | PHP / Laravel • MIT | Robust inbound webhook receiving package with built-in signature verification, profile handling, and background job queues |
+| **[captainhook](https://github.com/captainhook-git/captainhook)** | [![Stars](https://img.shields.io/github/stars/captainhook-git/captainhook?style=social&color=white)](https://github.com/captainhook-git/captainhook/stargazers) | PHP • MIT | Very flexible Git and repository lifecycle webhook orchestrator for automated CI/CD and deployment hooks |
+| **[webhookd](https://github.com/ncarlier/webhookd)** | [![Stars](https://img.shields.io/github/stars/ncarlier/webhookd?style=social&color=white)](https://github.com/ncarlier/webhookd/stargazers) | Go • MIT | Minimalist, robust webhook listener server designed to run shell scripts and trigger background jobs via HTTP POST |
+| **[laravel-webhook-server](https://github.com/spatie/laravel-webhook-server)** | [![Stars](https://img.shields.io/github/stars/spatie/laravel-webhook-server?style=social&color=white)](https://github.com/spatie/laravel-webhook-server/stargazers) | PHP / Laravel • MIT | Complete outbound webhook dispatcher library supporting backoff retries, secret signing, and status tagging |
+| **[outpost](https://github.com/hookdeck/outpost)** | [![Stars](https://img.shields.io/github/stars/hookdeck/outpost?style=social&color=white)](https://github.com/hookdeck/outpost/stargazers) | Go • Apache-2.0 | Hookdeck's outbound event delivery engine dispatching to Webhooks, AWS SQS, RabbitMQ, Kafka, and GCP Pub/Sub |
+| **[webhook-tester](https://github.com/tarampampam/webhook-tester)** | [![Stars](https://img.shields.io/github/stars/tarampampam/webhook-tester?style=social&color=white)](https://github.com/tarampampam/webhook-tester/stargazers) | Go / React • MIT | Self-hosted microservice and real-time web UI to test and inspect HTTP webhook callbacks with WebSocket push |
+| **[webhookx](https://github.com/webhookx-io/webhookx)** | [![Stars](https://img.shields.io/github/stars/webhookx-io/webhookx?style=social&color=white)](https://github.com/webhookx-io/webhookx/stargazers) | Go • Apache-2.0 | GitOps-oriented webhook gateway supporting WASM plugins, event fanout, rate limiting, and distributed deliveries |
+
+---
+
+## 📊 Feature Comparison Matrix
+
+| Project / Software | Primary Direction | HMAC / Signature Signing | Auto Retries & Exponential Backoff | Ingestion Throttling / Queues | Consumer Portal UI | Self-Hostable |
+|---|---|---|---|---|---|---|
+| **Make Webhooks** | Inbound / Outbound | ⚠️ API Key / Token | ✅ Automated Reschedule | ✅ High-Throughput Buffering | ❌ Built-in Scenarios | ❌ SaaS Only |
+| **Zapier Webhooks** | Inbound / Outbound | ⚠️ Basic / Custom Headers | ✅ Zapier Errored Replay | ✅ Internal Task Queue | ❌ Zapier Dashboard | ❌ SaaS Only |
+| **Chargebee** | Outbound (Billing) | ❌ Basic Auth Only | ✅ 7 Attempts / 2 Days | ✅ Distributed Queue | ✅ Merchant Portal | ❌ SaaS Only |
+| **Pipedream** | Inbound / Outbound | ✅ HMAC via Code Steps | ✅ Auto Retries / Dead-Letter | ✅ Managed Event Stream | ❌ Developer Console | ❌ Cloud / Enterprise |
+| **Svix** | Outbound & Relay | ✅ HMAC-SHA256 (Standard) | ✅ Configurable Schedule | ✅ Rate Limiting & DLQ | ✅ White-label Portal | ✅ Open Core (Rust) |
+| **Courier** | Outbound (Notifications) | ✅ Provider Overrides | ✅ Fallback Routing | ✅ Delivery Queues | ❌ Notification Logs | ❌ SaaS Only |
+| **Hookdeck** | Inbound & Outbound | ✅ Automatic Verification | ✅ Exponential Retries | ✅ Ingestion Queue & Buffer | ✅ User Portal (Outpost)| ✅ Outpost Engine (Go) |
+| **RequestBin** | Inbound (Debug/Forward) | ⚠️ Custom Header Pass-through | ✅ Live Auto-Forwarding | ✅ Bin Request Buffering | ❌ Debug Workspace | ❌ SaaS Only |
+| **Webhook.site** | Inbound (Inspector) | ⚠️ Pass-through / Custom Actions| ✅ Queue Throttling Rules | ✅ Custom Async Queues | ❌ Webhook Inspector | ✅ Open-Source Core |
+| **Convoy** | Inbound & Outbound | ✅ HMAC Verification & Signing | ✅ Exponential Backoff | ✅ Ingestion & Delivery Queues | ✅ Customer Portal | ✅ Fully Self-Hosted (Go)|
+| **Hook0** | Outbound | ✅ HMAC-SHA256 Signatures | ✅ Escalating Backoff & DLQ | ✅ PostgreSQL / Pulsar Queue | ✅ Tenant Management UI| ✅ Fully Self-Hosted (Rust)|
+| **Outpost** | Outbound Multi-Broker | ✅ Signature Verification | ✅ At-Least-Once Delivery | ✅ Message Broker Fanout | ✅ Consumer Management | ✅ Fully Self-Hosted (Go)|
+| **WebhookX** | Inbound & Outbound | ✅ WASM / Built-in Plugin | ✅ Configurable Retry Policies | ✅ Rate Limiter Engine | ❌ Declarative Admin API | ✅ Fully Self-Hosted (Go)|
+| **ADNANH Webhook**| Inbound (Exec Shell) | ⚠️ Secret Token / Param Matching | ❌ Delegate to Subprocess | ❌ OS Process Level | ❌ Headless Daemon | ✅ Fully Self-Hosted (Go)|
+
+---
+
+## 🔍 Key Evaluation Criteria for Webhook Gateways
+
+When selecting or architecting a webhook infrastructure for production workloads, consider these mission-critical dimensions:
+
+1. **🔐 Cryptographic Integrity & HMAC Signatures**:
+   Always require cryptographic signing using standard HMAC algorithms (e.g., HMAC-SHA256) combined with epoch timestamp validation to defend against replay attacks (adhering to [Standard Webhooks](https://www.standardwebhooks.com/)).
+2. **🛡️ Ingestion Spikes & Queuing Buffers**:
+   Webhook senders can generate sudden bursts of thousands of events per second. A dedicated gateway buffer (using Redis, Apache Pulsar, or SQS) absorbs traffic spikes to safeguard downstream endpoints from cascading 504 Gateway Timeouts.
+3. **🔄 Exponential Retries & Dead Letter Queues (DLQ)**:
+   Receiving servers experience transient downtime, network partitions, and database locks. Resilient webhook providers implement escalating backoff schedules (e.g., immediate, 5s, 1m, 15m, 1h, 6h, 24h) and preserve failed payloads in a DLQ for manual inspection and replay.
+4. **👥 Multi-Tenant Customer Portals**:
+   If building a B2B SaaS platform, offload customer support tickets by embedding a self-serve webhook portal where your enterprise clients can configure endpoints, rotate signing secrets, inspect delivery logs, and trigger event redeliveries independently.
+5. **🧩 Transformation & Event Routing**:
+   Filter events at the network boundary using dot-notation schemas (`order.created`, `invoice.payment_failed`) to prevent downstream systems from receiving irrelevant payloads.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! If you know of an open-source Real-Time Event Webhook tool that should be listed here, please open a pull request with:
+Contributions, feedback, and suggestions are welcome!
 
-- Project name and URL
-- Brief description (1–2 sentences)
-- Stack and license
-- Why it stands out
-
-Please ensure the project is actively maintained (releases within the last 12 months) and genuinely open-source (or clearly note if it is source-available but not OSI-approved, as with Hook0's SSPL). Note that the open-source ecosystem **splits** between **full gateways** (Convoy for unified inbound/outbound, WebhookX for plugin-extensible GitOps), **outbound delivery infrastructure** (Hook0 for multi-tenant parity, Outpost for multi-destination queues/brokers), and **inspection tools** (Webhook Tester). **Hook0** is notable for having no feature gating between cloud and self-hosted under SSPL , while **Outpost** uniquely supports delivery to SQS, RabbitMQ, Pub/Sub, EventBridge, and Kafka beyond plain webhooks . Commercial platforms like Svix and Hookdeck remain far more capable for multi-tenant SaaS webhooks with consumer portals and managed reliability at scale.
+To propose a new open-source project or hosted service:
+1. Fork this repository.
+2. Create a new branch: `git checkout -b feature/add-new-webhook-tool`.
+3. Add the project to the appropriate section in alphabetical or sorted order with accurate descriptions, verified license, and links.
+4. Ensure any open-source addition has active maintenance (commits within the last 12 months).
+5. Submit a pull request with a brief summary of why the tool stands out.
 
 ---
 
 ## 📄 License
 
-This list is released under CC0 1.0 Universal (Public Domain). The software projects listed retain their respective licenses.
+This repository is curated and made available under the [Creative Commons Zero v1.0 Universal](LICENSE) (Public Domain Dedication). All third-party software products, brand names, and logos belong to their respective owners.
 
 ---
 
-⭐ **If this list helped you discover a useful tool, please star the repo!** ⭐
+<p align="center">
+  <sub>Built with ❤️ by <a href="https://github.com/ishandutta2007">Ishan Dutta</a> and the open-source event-driven developer community.</sub>
+</p>
